@@ -1,0 +1,186 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*?INICIO HEADER*/
+
+nav ul {
+  gap: 1rem;
+}
+
+#logo {
+}
+
+#carouselExampleCaptions div h1 {
+}
+
+#carouselExampleCaptions div div img {
+  width: 100%;
+  height: 50vh;
+  filter: brightness(0.7);
+  object-fit: cover;
+}
+
+/*? FIN HEADER*/
+
+/*? INICIO MAIN*/
+main {
+  background: #cc0658; /* fallback for old browsers */
+  
+  background: linear-gradient(
+    to right,
+    #610e41,
+    #cc0658
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: auto;
+}
+
+/** Checkbox*/
+
+/**Search*/
+
+/** Botones Cards*/
+
+.buttons {
+  margin: 10%;
+  text-align: center;
+}
+
+.btn-hover {
+  width: 6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  height: 3.5rem;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 25px;
+
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color-7 {
+  background-image: linear-gradient(
+    to right,
+    #c71c72,
+    #f3369e,
+    #852d91,
+    #6253e1
+  );
+  box-shadow: 0 4px 15px 0 #c71c72;
+}
+/*Fin botones Cards*/
+
+/*?FIN MAIN **/
+
+/*?FOOTER*/
+
+footer {
+  height: auto;
+}
+footer img {
+  height: 2rem;
+  width: 2rem;
+  margin-left: 0.4rem;
+}
+
+footer hr {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+/*? FIN FOOTER*/
+
+/*! HOME PAGE */
+
+/**Cards**/
+#cards p {
+  text-align: justify;
+}
+
+#cards h5 {
+}
+
+#cards img{
+
+  height: 25vh;
+  
+}
+
+/** Fin cards**/
+
+/*! CONTACT PAGE*/
+
+/** SUBMIT BUTTON FORM*/
+
+.button_slide {
+  color: #fff;
+  border: 2px solid rgb(216, 2, 134);
+  border-radius: 0px;
+  padding: 18px 36px;
+  display: inline-block;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #d80286;
+  transition: ease-out 0.4s;
+}
+
+.slide_left:hover {
+  box-shadow: inset 0 0 0 50px #d80286;
+}
+#outer {
+  width: 14rem;
+  margin: 50px auto 0 auto;
+  text-align: center;
+  background: transparent;
+}
+/** FIN SUBMIT BUTTON FORM*/
+
+/*! FIN CONTACT PAGE*/
+
+/*! STATS PAGE*/
+
+.statstable {
+  overflow: auto;
+  width: 100%;
+}
+.statstable table {
+  border: 2px solid #000000;
+  height: 100%;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: left;
+}
+.statstable caption {
+  text-align: left;
+}
+.statstable th {
+  border: 2px solid #000000;
+  background-color: #ca2159;
+  color: #ffffff;
+  padding: 5px;
+}
+.statstable td {
+  border: 2px solid #000000;
+  background-color: #f0f0f0;
+  color: #000000;
+  padding: 5px;
+}
+
+/*!FIN STATS PAGE*/
