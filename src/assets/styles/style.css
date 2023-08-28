@@ -51,7 +51,7 @@ main {
   height: auto;
   color: #fff;
 
-  width: 15rem;
+  width: auto;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
