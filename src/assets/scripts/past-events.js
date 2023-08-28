@@ -22,18 +22,19 @@ function createCard(card) {
                 src="${card.image}"
                 class="card-img-top mt-3"
                 alt="..." >
-              <div class="card-body text-center mt-0">
-                <h5 class="card-title">${card.name}</h5>
+              <div class="card-body text-center mt-2 p-1">
+                <h5 class="card-title"><strong>${card.name}</strong></h5>
                 <p class="card-text">
                   ${card.description}
                 </p>
+                <p class=" m-0"><strong>Category: </strong>${card.category}</p>
+                <p class=" m-0"><strong>Place: </strong>${card.place}</p>
+                <p class=" m-0"><strong>Date: </strong>${card.date}</p>
+                <p class=" m-0"><strong>Price:</strong> $${card.price}</p>
               </div>
-              <div class="row pb-0 mt-0 ">
-                <div class="col-12 mt-0 col-sm-6 mt-sm-4 ">
-                  <p class="text-center m-0"><strong>Price:</strong> $${card.price}</p>
-                </div>
-                <div class="col-12 m-1 text-center col-sm-6 m-sm-0">
-                 <a href="./assets/pages/details.html" class="btn btn-hover color-7">  Details</a>
+              <div class="row mb-3  ">
+                <div class="text-end">
+                  <a href="./assets/pages/details.html" class="btn btn-hover color-7 m-0">  Details</a>
                 </div>
               </div>
             </div>`;
