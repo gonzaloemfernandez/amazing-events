@@ -96,6 +96,10 @@ main {
   );
   box-shadow: 0 4px 15px 0 #c71c72;
 }
+
+#img{
+  object-fit: cover;
+}
 /*Fin botones Cards*/
 
 /*?FIN MAIN **/

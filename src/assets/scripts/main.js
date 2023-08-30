@@ -16,7 +16,7 @@ function createCard(card) {
   return `<div
               class="card bg-dark bg-opacity-10 text-white border-5 border-white border-opacity-50 m-2" 
               style="width: 16rem">
-              <img
+              <img id="img"
                 src="${card.image}"
                 class="card-img-top mt-3"
                 alt="..." >
