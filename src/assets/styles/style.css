@@ -209,12 +209,15 @@ footer hr {
 
 }
 #navbarDetails{
-  height: 17vh;
+  height: 18.5vh;
 }
 
-
+#footerDetails{
+  height: 15vh;
+}
 #imgDetails {
 
+  margin: 1rem;
   width: 100%;
   object-fit:cover;
   border: solid 1px #000000;
