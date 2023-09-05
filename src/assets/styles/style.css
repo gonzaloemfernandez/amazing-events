@@ -8,6 +8,7 @@
 
 nav ul {
   gap: 1rem;
+
 }
 
 #logo {
@@ -106,9 +107,6 @@ main {
 
 /*?FOOTER*/
 
-footer {
-  height: auto;
-}
 footer img {
   height: 2rem;
   width: 2rem;
@@ -200,3 +198,21 @@ footer hr {
 }
 
 /*!FIN STATS PAGE*/
+
+/*! DETAILS PAGE*/
+
+
+
+#imgDetails {
+
+  width: 100%;
+  object-fit:cover;
+  border: solid 1px #000000;
+}
+.card-text {
+  text-align: justify;
+}
+
+
+
+/*!FIN DETAILS PAGE*/

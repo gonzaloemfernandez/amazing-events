@@ -1,14 +1,37 @@
 const cardContainer = document.getElementById("cards");
+const checkboxesContainer = document.getElementById("checkboxes");
+const searchBarContainer = document.getElementById("searchBar");
+
 let cards = "";
 
+let categories = filterCategories(data.events);
+
 renderCards(data.events, cardContainer);
+renderCheckboxes(categories, checkboxesContainer);
+
+
+
+//* Listeners
+searchBarContainer.addEventListener("input",filters);
+
+checkboxesContainer.addEventListener("change",filters );
+
+// --------------------------------------------Functions--------------------------------------
+
+//* Cards
 
 function renderCards(arrayData, container) {
+
+  if (arrayData.length === 0) {
+    container.innerHTML = `<h2 class="text-center fs-2 fw-bolder">NO MATCHES FOUND<h2/>`;
+    return;
+  }
+  
   let cardsGroup = "";
 
-  for (element of arrayData) {
+  arrayData.forEach((element) => {
     cardsGroup += createCard(element);
-  }
+  });
   container.innerHTML = cardsGroup;
 }
 
@@ -32,8 +55,77 @@ function createCard(card) {
               </div>
               <div class="row mb-3  ">
                 <div class="text-end">
-                  <a href="./assets/pages/details.html" class="btn btn-hover color-7 m-0">  Details</a>
+                  <a href="./assets/pages/details.html?id=${card._id}" class="btn btn-hover color-7 m-0">  Details</a>
                 </div>
               </div>
             </div>`;
+}
+
+//* Checkboxes
+
+function filterCategories(arrayData) {
+  return Array.from(new Set(arrayData.map((events) => events.category)));
+}
+
+//Alternative function to filter categories
+
+// function filterCategories(arrayData) {
+//   return arrayData
+//     .map((elemento) => elemento.category)
+//     .filter(
+//       (category, indice, categories) => categories.indexOf(category) === indice
+//     );
+// }
+
+function renderCheckboxes(arrayCategories, container) {
+  let checkboxesGroup = "";
+
+  arrayCategories.forEach((element) => {
+    checkboxesGroup += createCheckbox(element);
+  });
+  container.innerHTML = checkboxesGroup;
+}
+
+function createCheckbox(checkbox) {
+  return `<div class="form-check-inline">
+              <input
+                class="form-check-input   bg-danger"
+                type="checkbox"
+                value="${checkbox}"
+                id="${checkbox}">
+                
+              <label class="form-check-label" for="${checkbox}"
+                >${checkbox}</label
+              >
+            </div>`;
+}
+
+//*Filters
+function textFilter(text, array) {
+  return array.filter((elemento) =>
+    elemento.name.toLowerCase().includes(text.toLowerCase())
+  );
+}
+
+function filterByCategories(array) {
+  let checkboxes = Array.from(
+    document.querySelectorAll("input[type=checkbox]")
+  );
+  let checkboxesCheckeds = checkboxes.filter((check) => check.checked);
+  if (checkboxesCheckeds.length == 0) {
+    return array;
+  }
+  let values = checkboxesCheckeds.map(
+    (checkboxesChecked) => checkboxesChecked.value
+  );
+  let arrayFilter = array.filter((elemento) =>
+    values.includes(elemento.category)
+  );
+  return arrayFilter;
+}
+
+function filters() {
+let filter = textFilter(searchBarContainer.value, data.events);
+let filter2 = filterByCategories(filter);
+renderCards(filter2, cardContainer);
 }
