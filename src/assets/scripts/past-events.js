@@ -2,12 +2,13 @@ const cardContainer = document.getElementById("cards");
 const checkboxesContainer = document.getElementById("checkboxes");
 const searchBarContainer = document.getElementById("searchBar");
 
+//Api
+const urlApi = "https://mindhub-xj03.onrender.com/api/amazing";
+let globalData = {};
 let cards = "";
-let categories = filterCategories(data.events);
 
 
-renderCards(data.events, cardContainer);
-renderCheckboxes(categories, checkboxesContainer);
+
 
 
 
@@ -16,20 +17,42 @@ searchBarContainer.addEventListener("input",filters);
 
 checkboxesContainer.addEventListener("change",filters );
 
-
+//*Fetch call
+fetchFunction(urlApi);
 
 // --------------------------------------------Functions--------------------------------------
+
+//Fetch
+function fetchFunction(urlApi) {
+  fetch(urlApi)
+    .then((response) => response.json())
+    .then((dataApi) => {
+      globalData = dataApi;
+      let categories = filterCategories(dataApi.events);
+
+      //Llamada a funciones para renderizar
+      renderCards(dataApi.events, cardContainer);
+      renderCheckboxes(categories, checkboxesContainer);
+    });
+}
+
 
 //* Cards
 
 function renderCards(arrayData, container) {
   let cardsGroup = "";
 
-  for (element of arrayData) {
-    if (element.date < data.currentDate) {
+  if (arrayData.length === 0) {
+    container.innerHTML = `<h2 class="text-center fs-2 fw-bolder">NO MATCHES FOUND<h2/>`;
+    return;
+  }
+
+  arrayData.forEach((element) => {
+    if (element.date < globalData.currentDate) {
       cardsGroup += createCard(element);
     }
-  }
+  });
+
   container.innerHTML = cardsGroup;
 }
 
@@ -124,7 +147,7 @@ function filterByCategories(array) {
 }
 
 function filters() {
-let filter = textFilter(searchBarContainer.value, data.events);
+let filter = textFilter(searchBarContainer.value, globalData.events);
 let filter2 = filterByCategories(filter);
 renderCards(filter2, cardContainer);
 }

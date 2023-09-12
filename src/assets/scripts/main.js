@@ -1,14 +1,10 @@
 const cardContainer = document.getElementById("cards");
 const checkboxesContainer = document.getElementById("checkboxes");
 const searchBarContainer = document.getElementById("searchBar");
-
+//Api
+const urlApi = "https://mindhub-xj03.onrender.com/api/amazing";
+let globalData = {};
 let cards = "";
-
-let categories = filterCategories(data.events);
-
-renderCards(data.events, cardContainer);
-renderCheckboxes(categories, checkboxesContainer);
-
 
 
 //* Listeners
@@ -16,7 +12,29 @@ searchBarContainer.addEventListener("input",filters);
 
 checkboxesContainer.addEventListener("change",filters );
 
+//*Fetch 
+fetchFunction(urlApi);
+
+
+
 // --------------------------------------------Functions--------------------------------------
+
+
+
+//Fetch
+function fetchFunction(urlApi) {
+  fetch(urlApi)
+    .then((response) => response.json())
+    .then((dataApi) => {
+      globalData = dataApi;
+      let categories = filterCategories(dataApi.events);
+
+      //Llamada a funciones para renderizar
+      renderCards(dataApi.events, cardContainer);
+      renderCheckboxes(categories, checkboxesContainer);
+    });
+}
+
 
 //* Cards
 
@@ -103,7 +121,7 @@ function createCheckbox(checkbox) {
 //*Filters
 function textFilter(text, array) {
   return array.filter((elemento) =>
-    elemento.name.toLowerCase().includes(text.toLowerCase())
+    elemento.name.toLowerCase().includes(text.toLowerCase().trim())
   );
 }
 
@@ -125,7 +143,7 @@ function filterByCategories(array) {
 }
 
 function filters() {
-let filter = textFilter(searchBarContainer.value, data.events);
+let filter = textFilter(searchBarContainer.value, globalData.events);
 let filter2 = filterByCategories(filter);
 renderCards(filter2, cardContainer);
 }

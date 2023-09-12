@@ -1,9 +1,18 @@
 const cardContainer = document.getElementById("cardMain");
+//Api
+const urlApi = "https://mindhub-xj03.onrender.com/api/amazing";
+let globalData = {};
 
 let params = new URLSearchParams(window.location.search);
 let id = params.get("id");
-let eventData = searchEvent(id);
-renderCard(eventData, cardContainer);
+
+
+//Fetch
+fetchFunction(urlApi);
+
+
+// --------------------------------------------Functions--------------------------------------
+
 
 function renderCard(data, container) {
   container.innerHTML = createCard(data);
@@ -18,7 +27,7 @@ function createCard(data) {
                 <img id="imgDetails"
                   src="${data.image}" >
               </div>
-              <div class="col-xl-6">
+              <div class="col-xl-6 p-lg-5">
                 <div class="card-body">
                   <h2 class="card-title fw-bolder">${data.name}</h2>
                   <p class="card-text ">
@@ -34,7 +43,9 @@ function createCard(data) {
                   </div>
 
                   <div class="col-sm-6">
-                  <p><strong>Assistance: </strong>${data.assistance}</p>
+                  <p><strong>Assistance: </strong>${
+                    data.assistance || data.estimate
+                  }</p>
                   <p><strong>Capacity: </strong>${data.capacity}</p>
                   <p><strong>Price:</strong> $${data.price}</p>
                   </div>
@@ -50,6 +61,20 @@ function createCard(data) {
         </div>`;
 }
 
-function searchEvent(id) {
+function searchEvent(id,data) {
   return data.events.find((evento) => evento._id == id);
 }
+
+//Fetch function
+function fetchFunction(urlApi){
+
+  fetch(urlApi)
+  .then((response) => response.json())
+  .then((data) => {
+    globalData = data;
+    let eventData = searchEvent(id,globalData);
+    renderCard(eventData, cardContainer);
+
+  })
+}
+
